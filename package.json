@@ -1,0 +1,29 @@
+{
+  "name": "timestamp-microservice",
+  "version": "1.0.0",
+  "description": "Timestamp microservice",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedhosam-dev/timestamp-microservice.git"
+  },
+  "keywords": [
+    "timestamp",
+    "microservice",
+    "api",
+    "backend"
+  ],
+  "author": "Ahmed Hossam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmedhosam-dev/timestamp-microservice/issues"
+  },
+  "homepage": "https://github.com/ahmedhosam-dev/timestamp-microservice#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
