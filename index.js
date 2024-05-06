@@ -24,6 +24,16 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api/", (req, res) => {
+  unix = Date.now();
+  utc = Date(Number(unix)).toUTCString();
+  
+  res.json({
+    "unix": unix,
+    "utc": utc
+  });
+})
+
 app.get("/api/:date", (req, res) => {
   // if date is unix
   if (req.params.date >= 0){
@@ -32,9 +42,9 @@ app.get("/api/:date", (req, res) => {
   } else {
     date = req.params.date.split("-");
     unix = new Date( date[0], date[1] -1, date[2] ).getTime();
-    utc = new Date(unix).toUTCString();
-  }
-
+    utc = new Date(Number(unix)).toUTCString();
+  } 
+  
   res.json({
     "unix": unix,
     "utc": utc
