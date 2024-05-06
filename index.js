@@ -26,28 +26,40 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/", (req, res) => {
   unix = Date.now();
-  utc = Date(Number(unix)).toUTCString();
+  utc = new Date(Number(unix)).toUTCString();
   
   res.json({
-    "unix": unix,
-    "utc": utc
+    unix: Number(unix),
+    utc: utc
   });
 })
 
 app.get("/api/:date", (req, res) => {
+  let datePattern = /^\d{4}-\d{2}-\d{2}$/;
+
   // if date is unix
   if (req.params.date >= 0){
     unix = req.params.date;
     utc = new Date(Number(unix)).toUTCString();
-  } else {
+  } 
+  else if (datePattern.test(req.params.date)) {
     date = req.params.date.split("-");
     unix = new Date( date[0], date[1] -1, date[2] ).getTime();
     utc = new Date(Number(unix)).toUTCString();
   } 
+  else if (new Date(req.params.date) != "Invalid Date"){
+    unix = new Date(req.params.date).getTime();
+    utc = new Date(Number(unix)).toUTCString();
+  } 
+  else {
+    res.json({
+      error: "Invalid Date",
+    });
+  }
   
   res.json({
-    "unix": unix,
-    "utc": utc
+    unix: Number(unix),
+    utc: utc
   });
 });
 
